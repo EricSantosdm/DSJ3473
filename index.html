@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ARLS Deus e São João</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            dark: '#0a192f',
+                            DEFAULT: '#112240',
+                            light: '#233554',
+                        },
+                        secondary: '#64ffda',
+                        text: {
+                            light: '#ccd6f6',
+                            gray: '#8892b0',
+                        },
+                        category: {
+                            loja: '#ffffff',
+                            demolay: '#ef4444',
+                            apj: '#93c5fd',
+                            frafem: '#15803d',
+                            priorado: '#86efac',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Estilos personalizados para complementar o Tailwind */
+        .gradient-bg {
+            background: linear-gradient(135deg, #0a192f 0%, #112240 50%, #233554 100%);
+        }
+        
+        .hero-bg {
+            background: 
+                linear-gradient(rgba(10, 25, 47, 0.85), rgba(10, 25, 47, 0.95)),
+                url('https://www.grandelojasimbolicalusitania.pt/images/Ma%C3%A7onaria_Ma%C3%A7onaria_Mista_Rito_Antigo_e_Primitivo_Memphis_Misraim_Memphis_Misraim_Grande_Loja_Simb%C3%B3lica_da_Lusitania.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            width: 50px;
+            height: 2px;
+            background-color: #64ffda;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: #64ffda;
+            transition: width 0.3s;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .bounce {
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0) translateX(-50%);
+            }
+            40% {
+                transform: translateY(-10px) translateX(-50%);
+            }
+            60% {
+                transform: translateY(-5px) translateX(-50%);
+            }
+        }
+        
+        .calendar-event {
+            position: relative;
+        }
+        
+        .calendar-event::after {
+            content: attr(data-category);
+            position: absolute;
+            bottom: 5px;
+            right: 5px;
+            font-size: 0.7rem;
+            padding: 2px 5px;
+            border-radius: 3px;
+            color: #0a192f;
+            font-weight: 600;
+        }
+        
+        .calendar-event.loja::after {
+            background-color: #ffffff;
+        }
+        
+        .calendar-event.demolay::after {
+            background-color: #ef4444;
+        }
+        
+        .calendar-event.apj::after {
+            background-color: #93c5fd;
+        }
+        
+        .calendar-event.frafem::after {
+            background-color: #15803d;
+        }
+        
+        .calendar-event.priorado::after {
+            background-color: #86efac;
+        }
+        
+        .back-to-top {
+            transition: all 0.3s;
+        }
+    </style>
+</head>
+<body class="gradient-bg text-text-light font-sans">
+    <!-- Cabeçalho -->
+    <header class="fixed w-full bg-primary-dark/90 backdrop-blur-sm shadow-lg z-50 transition-all duration-300">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center py-4">
+                <div class="flex items-center mb-4 md:mb-0">
+                    <img src="assets/logo.png" alt="ARLS Deus e São João" class="h-16 w-auto mr-4">
+                    <div>
+                        <h1 class="text-secondary text-xl font-bold">A∴R∴L∴S∴ Deus e São João Nº3473</h1>
+                        <p class="text-text-gray text-sm">Loja Maçônica GOB-CE</p>
+                    </div>
+                </div>
+                <nav class="w-full md:w-auto">
+                    <div class="mobile-menu block md:hidden text-right">
+                        <button class="text-text-light text-xl focus:outline-none">
+                            <i class="fas fa-bars"></i>
+                        </button>
+                    </div>
+                    <ul class="hidden md:flex space-x-6">
+                        <li><a href="#home" class="nav-link text-text-light hover:text-secondary font-medium transition-colors duration-300 relative">Início</a></li>
+                        <li><a href="#about" class="nav-link text-text-light hover:text-secondary font-medium transition-colors duration-300 relative">Sobre</a></li>
+                        <li><a href="#reaa" class="nav-link text-text-light hover:text-secondary font-medium transition-colors duration-300 relative">REAA</a></li>
+                        <li><a href="#organizations" class="nav-link text-text-light hover:text-secondary font-medium transition-colors duration-300 relative">Organizações</a></li>
+                        <li><a href="#gallery" class="nav-link text-text-light hover:text-secondary font-medium transition-colors duration-300 relative">Ex-Veneráveis</a></li>
+                        <li><a href="#calendar" class="nav-link text-text-light hover:text-secondary font-medium transition-colors duration-300 relative">Calendário</a></li>
+                        <li><a href="#contact" class="nav-link text-text-light hover:text-secondary font-medium transition-colors duration-300 relative">Contato</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Seção Hero com Imagem -->
+    <section class="hero-bg min-h-screen flex items-center justify-center relative pt-20" id="home">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-4xl md:text-5xl font-bold text-secondary mb-6 drop-shadow-lg">A∴R∴L∴S∴ Deus e São João</h2>
+            <img src="assets/logo.png" alt="ARLS Deus e São João" class="mx-auto mb-6 h-48 md:h-64 w-auto">
+            <p class="text-xl md:text-2xl mb-8 text-text-light drop-shadow">Trabalhando pelo aperfeiçoamento moral e intelectual</p>
+            <div class="bg-primary/80 backdrop-blur-sm p-6 rounded-lg inline-block shadow-xl border-l-4 border-secondary">
+                <h3 class="text-secondary text-xl md:text-2xl font-semibold mb-2">Nossas Reuniões</h3>
+                <p class="text-lg md:text-xl text-text-light">Todas as terças-feiras às 19:30</p>
+            </div>
+        </div>
+        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 bounce">
+            <a href="#about" class="text-text-light text-2xl">
+                <i class="fas fa-chevron-down"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- Seção Sobre -->
+    <section class="py-20 bg-primary" id="about">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16 relative">
+                <h2 class="text-3xl md:text-4xl font-bold text-secondary inline-block">Sobre Nossa Loja</h2>
+                <div class="section-title"></div>
+            </div>
+            <div class="flex flex-col lg:flex-row gap-10 items-center">
+                <div class="lg:w-1/2">
+                    <p class="text-text-gray text-lg mb-6">A ARLS Deus e São João é uma loja maçônica que tem como objetivo principal o aperfeiçoamento moral e intelectual de seus membros, através do estudo e prática dos princípios maçônicos.</p>
+                    <p class="text-text-gray text-lg mb-6">Nossa loja reúne-se regularmente para trabalhar em prol do desenvolvimento humano e da sociedade, seguindo os princípios da Liberdade, Igualdade e Fraternidade.</p>
+                    <p class="text-text-gray text-lg">Valorizamos o respeito às diferentes crenças e opiniões, promovendo um ambiente de tolerância e compreensão mútua. Nossas reuniões acontecem todas as terças-feiras às 19:30, onde nos dedicamos ao estudo filosófico e ao desenvolvimento pessoal.</p>
+                </div>
+                <div class="lg:w-1/2 flex justify-center">
+                    <img src="assets/logo.png" alt="Símbolos Maçônicos" class="rounded-lg shadow-2xl max-w-full h-auto">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção REAA -->
+    <section class="py-20 bg-primary-dark" id="reaa">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16 relative">
+                <h2 class="text-3xl md:text-4xl font-bold text-secondary inline-block">Rito Escocês Antigo e Aceito</h2>
+                <div class="section-title"></div>
+            </div>
+            <div class="flex flex-col lg:flex-row gap-10 items-center">
+                <div class="lg:w-1/2">
+                    <p class="text-text-gray text-lg mb-6">O Rito Escocês Antigo e Aceito (REAA) é um dos ritos maçônicos mais praticados no mundo, conhecido por sua rica simbologia e profunda filosofia. Nossa loja trabalha neste rito, que se caracteriza por seu sistema de graus que vão do 1º ao 33º.</p>
+                    <p class="text-text-gray text-lg mb-6">O REAA busca o aperfeiçoamento do ser humano através do estudo de símbolos e alegorias, incentivando a reflexão sobre valores éticos e morais. Cada grau possui ensinamentos específicos que contribuem para o desenvolvimento intelectual e espiritual do maçom.</p>
+                    <p class="text-text-gray text-lg mb-10">Este rito enfatiza a liberdade de consciência, a tolerância e o respeito à diversidade de pensamento, princípios fundamentais para a construção de uma sociedade mais justa e fraterna.</p>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
+                        <div class="bg-primary p-6 rounded-lg text-center transition-transform duration-300 hover:-translate-y-2 shadow-lg">
+                            <i class="fas fa-book text-4xl text-secondary mb-4"></i>
+                            <h3 class="text-secondary text-xl font-semibold mb-3">Graus Simbólicos</h3>
+                            <p class="text-text-gray">Do 1º ao 3º grau, formando a base da jornada maçônica com ensinamentos fundamentais.</p>
+                        </div>
+                        <div class="bg-primary p-6 rounded-lg text-center transition-transform duration-300 hover:-translate-y-2 shadow-lg">
+                            <i class="fas fa-gem text-4xl text-secondary mb-4"></i>
+                            <h3 class="text-secondary text-xl font-semibold mb-3">Graus Filosóficos</h3>
+                            <p class="text-text-gray">Do 4º ao 33º grau, aprofundando o conhecimento maçônico e o desenvolvimento pessoal.</p>
+                        </div>
+                        <div class="bg-primary p-6 rounded-lg text-center transition-transform duration-300 hover:-translate-y-2 shadow-lg">
+                            <i class="fas fa-balance-scale text-4xl text-secondary mb-4"></i>
+                            <h3 class="text-secondary text-xl font-semibold mb-3">Valores</h3>
+                            <p class="text-text-gray">Liberdade, igualdade, fraternidade, tolerância e busca constante pelo conhecimento.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="lg:w-1/2 flex justify-center">
+                    <img src="assets/SUPREMO_COLOR22.png" alt="Símbolos do REAA" class="rounded-lg shadow-2xl max-w-full h-auto">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção Organizações Apoiadas -->
+    <section class="py-20 bg-primary" id="organizations">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16 relative">
+                <h2 class="text-3xl md:text-4xl font-bold text-secondary inline-block">Organizações Apoiadas</h2>
+                <div class="section-title"></div>
+            </div>
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 items-center justify-items-center">
+                <img src="assets/bodes.png" alt="Subsede Bodes do Asfalto Mauriti" class="w-full max-w-40 grayscale hover:grayscale-0 opacity-70 hover:opacity-100 transition-all duration-300 hover:scale-105">
+                <img src="https://www.gob.org.br/wp-content/uploads/SIMBOLOS-2.png" alt="Núcleo APJ Maria Cleonice" class="w-full max-w-40 grayscale hover:grayscale-0 opacity-70 hover:opacity-100 transition-all duration-300 hover:scale-105">
+                <img src="assets/frafem.png" alt="Fraternidade Feminina" class="w-full max-w-40 grayscale hover:grayscale-0 opacity-70 hover:opacity-100 transition-all duration-300 hover:scale-105">
+                <img src="assets/GJM transparente.png" alt="Capítulo DeMolay Guardiões da Juventude Mauritiense" class="w-full max-w-40 grayscale hover:grayscale-0 opacity-70 hover:opacity-100 transition-all duration-300 hover:scale-105">
+                <img src="assets/CSC 19.0.png" alt="Priorado Cavaleiros do Sertão Caririense" class="w-full max-w-40 grayscale hover:grayscale-0 opacity-70 hover:opacity-100 transition-all duration-300 hover:scale-105">
+            </div>
+        </div>
+    </section>
+
+    <!-- Galeria de Ex-Veneráveis -->
+    <section class="py-20 bg-primary-dark" id="gallery">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16 relative">
+                <h2 class="text-3xl md:text-4xl font-bold text-secondary inline-block">Galeria de Ex-Veneráveis</h2>
+                <div class="section-title"></div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="bg-primary-light rounded-lg overflow-hidden transition-transform duration-300 hover:-translate-y-2 shadow-lg">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Ex-Venerável 1" class="w-full h-72 object-cover border-b-4 border-secondary">
+                    <div class="p-5">
+                        <h3 class="text-secondary text-xl font-semibold mb-2">Irmão João Silva</h3>
+                        <p class="text-text-gray">Venerável Mestre (2018-2020)</p>
+                    </div>
+                </div>
+                <div class="bg-primary-light rounded-lg overflow-hidden transition-transform duration-300 hover:-translate-y-2 shadow-lg">
+                    <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Ex-Venerável 2" class="w-full h-72 object-cover border-b-4 border-secondary">
+                    <div class="p-5">
+                        <h3 class="text-secondary text-xl font-semibold mb-2">Irmão Pedro Santos</h3>
+                        <p class="text-text-gray">Venerável Mestre (2016-2018)</p>
+                    </div>
+                </div>
+                <div class="bg-primary-light rounded-lg overflow-hidden transition-transform duration-300 hover:-translate-y-2 shadow-lg">
+                    <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Ex-Venerável 3" class="w-full h-72 object-cover border-b-4 border-secondary">
+                    <div class="p-5">
+                        <h3 class="text-secondary text-xl font-semibold mb-2">Irmão Carlos Oliveira</h3>
+                        <p class="text-text-gray">Venerável Mestre (2014-2016)</p>
+                    </div>
+                </div>
+                <div class="bg-primary-light rounded-lg overflow-hidden transition-transform duration-300 hover:-translate-y-2 shadow-lg">
+                    <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Ex-Venerável 4" class="w-full h-72 object-cover border-b-4 border-secondary">
+                    <div class="p-5">
+                        <h3 class="text-secondary text-xl font-semibold mb-2">Irmão Antônio Costa</h3>
+                        <p class="text-text-gray">Venerável Mestre (2012-2014)</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Calendário -->
+    <section class="py-20 bg-primary" id="calendar">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16 relative">
+                <h2 class="text-3xl md:text-4xl font-bold text-secondary inline-block">Calendário de Reuniões</h2>
+                <div class="section-title"></div>
+            </div>
+            <div class="bg-primary-light rounded-lg shadow-xl overflow-hidden max-w-4xl mx-auto">
+                <div class="bg-primary py-5 px-6 text-center">
+                    <h3 class="text-secondary text-xl font-semibold" id="calendar-title">Calendário Mensal</h3>
+                    <div class="flex justify-center mt-4 space-x-4">
+                        <button id="prev-month" class="text-text-light hover:text-secondary transition-colors">
+                            <i class="fas fa-chevron-left"></i> Mês Anterior
+                        </button>
+                        <button id="next-month" class="text-text-light hover:text-secondary transition-colors">
+                            Próximo Mês <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="grid grid-cols-7 gap-px bg-primary" id="calendar-grid">
+                    <!-- Dias da semana -->
+                    <div class="bg-primary-light p-3 text-center font-bold text-secondary">Dom</div>
+                    <div class="bg-primary-light p-3 text-center font-bold text-secondary">Seg</div>
+                    <div class="bg-primary-light p-3 text-center font-bold text-secondary">Ter</div>
+                    <div class="bg-primary-light p-3 text-center font-bold text-secondary">Qua</div>
+                    <div class="bg-primary-light p-3 text-center font-bold text-secondary">Qui</div>
+                    <div class="bg-primary-light p-3 text-center font-bold text-secondary">Sex</div>
+                    <div class="bg-primary-light p-3 text-center font-bold text-secondary">Sáb</div>
+                    
+                    <!-- Dias do mês serão inseridos aqui via JavaScript -->
+                </div>
+            </div>
+            <div class="mt-8 max-w-4xl mx-auto">
+                <h4 class="text-secondary text-lg font-semibold mb-4">Legenda:</h4>
+                <div class="flex flex-wrap gap-4">
+                    <div class="flex items-center">
+                        <div class="w-4 h-4 bg-white mr-2"></div>
+                        <span class="text-text-light">Loja</span>
+                    </div>
+                    <div class="flex items-center">
+                        <div class="w-4 h-4 bg-red-500 mr-2"></div>
+                        <span class="text-text-light">DeMolay</span>
+                    </div>
+                    <div class="flex items-center">
+                        <div class="w-4 h-4 bg-blue-300 mr-2"></div>
+                        <span class="text-text-light">APJ</span>
+                    </div>
+                    <div class="flex items-center">
+                        <div class="w-4 h-4 bg-green-700 mr-2"></div>
+                        <span class="text-text-light">Frafem</span>
+                    </div>
+                    <div class="flex items-center">
+                        <div class="w-4 h-4 bg-green-300 mr-2"></div>
+                        <span class="text-text-light">Priorado</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Rodapé -->
+    <footer class="bg-primary-dark pt-16 pb-8 border-t border-primary-light" id="contact">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+                <div class="flex justify-center">
+                    <img src="assets/gob.png" alt="GOB" class=" grayscale hover:grayscale-0 opacity-70 hover:opacity-100 transition-all duration-300">
+                </div>
+                <div>
+                    <h3 class="text-secondary text-xl font-semibold mb-5">A∴R∴L∴S∴ Deus e São João Nº3473</h3>
+                    <p class="text-text-gray mb-5">Loja Maçônica dedicada ao aperfeiçoamento moral e intelectual, trabalhando pelo progresso da humanidade.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="bg-primary-light w-10 h-10 rounded-full flex items-center justify-center transition-colors hover:bg-secondary">
+                            <i class="fab fa-facebook-f text-text-light"></i>
+                        </a>
+                        <a href="#" class="bg-primary-light w-10 h-10 rounded-full flex items-center justify-center transition-colors hover:bg-secondary">
+                            <i class="fab fa-instagram text-text-light"></i>
+                        </a>
+                        <a href="#" class="bg-primary-light w-10 h-10 rounded-full flex items-center justify-center transition-colors hover:bg-secondary">
+                            <i class="fab fa-youtube text-text-light"></i>
+                        </a>
+                        <a href="#" class="bg-primary-light w-10 h-10 rounded-full flex items-center justify-center transition-colors hover:bg-secondary">
+                            <i class="fab fa-whatsapp text-text-light"></i>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-secondary text-xl font-semibold mb-5">Contato</h3>
+                    <p class="text-text-gray mb-3 flex items-center">
+                        <i class="fas fa-envelope mr-3 text-secondary"></i> 
+                        contato@arlsdeusesaojoao.com.br
+                    </p>
+                    <p class="text-text-gray mb-3 flex items-center">
+                        <i class="fas fa-phone mr-3 text-secondary"></i> 
+                        (XX) XXXX-XXXX
+                    </p>
+                    <p class="text-text-gray flex items-center">
+                        <i class="fas fa-map-marker-alt mr-3 text-secondary"></i> 
+                        Rua Exemplo, 123 - Cidade/Estado
+                    </p>
+                </div>
+                <div>
+                    <h3 class="text-secondary text-xl font-semibold mb-5">Links Rápidos</h3>
+                    <a href="#home" class="block text-text-gray hover:text-secondary mb-2 transition-colors">Início</a>
+                    <a href="#about" class="block text-text-gray hover:text-secondary mb-2 transition-colors">Sobre</a>
+                    <a href="#reaa" class="block text-text-gray hover:text-secondary mb-2 transition-colors">REAA</a>
+                    <a href="#organizations" class="block text-text-gray hover:text-secondary mb-2 transition-colors">Organizações</a>
+                    <a href="#gallery" class="block text-text-gray hover:text-secondary mb-2 transition-colors">Ex-Veneráveis</a>
+                    <a href="#calendar" class="block text-text-gray hover:text-secondary transition-colors">Calendário</a>
+                </div>
+            </div>
+            <div class="pt-8 border-t border-primary-light text-center">
+                <p class="text-text-gray">&copy; 2025 A∴R∴L∴S∴ Deus e São João. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Botão Voltar ao Topo -->
+    <div class="back-to-top fixed bottom-8 right-8 w-12 h-12 bg-secondary text-primary-dark rounded-full flex items-center justify-center cursor-pointer opacity-0 invisible transition-all duration-300 z-40">
+        <i class="fas fa-chevron-up text-xl"></i>
+    </div>
+
+    <script>
+        // Dados das reuniões - exemplo para vários meses
+        const meetingsData = {
+            // Formato: "YYYY-MM": [array de reuniões]
+            "2025-01": [
+                { date: 7, category: "loja" },
+                { date: 14, category: "demolay" },
+                { date: 21, category: "apj" },
+                { date: 28, category: "frafem" }
+            ],
+            "2025-02": [
+                { date: 4, category: "loja" },
+                { date: 11, category: "priorado" },
+                { date: 18, category: "loja" },
+                { date: 25, category: "demolay" }
+            ],
+            "2025-03": [
+                { date: 4, category: "loja" },
+                { date: 11, category: "apj" },
+                { date: 18, category: "loja" },
+                { date: 25, category: "frafem" }
+            ],
+              "2025-11": [
+                { date: 4, category: "loja" },
+                { date: 11, category: "priorado" },
+                { date: 18, category: "loja" },
+                { date: 25, category: "demolay" }
+            ],
+        };
+
+        // Variáveis globais para controle do calendário
+        let currentDate = new Date();
+        let currentMonth = currentDate.getMonth();
+        let currentYear = currentDate.getFullYear();
+
+        // Função para gerar o calendário
+        function generateCalendar(month, year) {
+            const calendarGrid = document.getElementById('calendar-grid');
+            const calendarTitle = document.getElementById('calendar-title');
+            
+            // Limpar o grid (exceto os cabeçalhos dos dias)
+            while (calendarGrid.children.length > 7) {
+                calendarGrid.removeChild(calendarGrid.lastChild);
+            }
+            
+            // Atualizar o título
+            const monthNames = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho",
+                "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"];
+            calendarTitle.textContent = `Calendário - ${monthNames[month]} ${year}`;
+            
+            // Obter o primeiro dia do mês
+            const firstDay = new Date(year, month, 1);
+            // Obter o último dia do mês
+            const lastDay = new Date(year, month + 1, 0);
+            // Obter o dia da semana do primeiro dia (0 = Domingo, 1 = Segunda, ...)
+            const startingDay = firstDay.getDay();
+            // Obter o número de dias no mês
+            const daysInMonth = lastDay.getDate();
+            
+            // Adicionar células vazias para os dias antes do primeiro dia do mês
+            for (let i = 0; i < startingDay; i++) {
+                const emptyCell = document.createElement('div');
+                emptyCell.className = 'bg-primary p-3 min-h-20';
+                calendarGrid.appendChild(emptyCell);
+            }
+            
+            // Obter as reuniões do mês atual
+            const monthKey = `${year}-${String(month + 1).padStart(2, '0')}`;
+            const monthMeetings = meetingsData[monthKey] || [];
+            
+            // Adicionar os dias do mês
+            for (let day = 1; day <= daysInMonth; day++) {
+                const dateCell = document.createElement('div');
+                dateCell.className = 'bg-primary p-3 min-h-20 flex flex-col justify-between transition-colors hover:bg-primary-dark';
+                
+                // Verificar se é o dia atual
+                const today = new Date();
+                if (day === today.getDate() && month === today.getMonth() && year === today.getFullYear()) {
+                    dateCell.classList.add('border-2', 'border-secondary');
+                }
+                
+                // Verificar se há reunião neste dia
+                const meeting = monthMeetings.find(m => m.date === day);
+                if (meeting) {
+                    dateCell.classList.add('calendar-event', meeting.category);
+                    dateCell.setAttribute('data-category', meeting.category.toUpperCase());
+                }
+                
+                dateCell.innerHTML = `
+                    <span class="date-number font-bold">${day}</span>
+                    ${meeting ? `<span class="text-xs">19:30</span>` : ''}
+                `;
+                
+                calendarGrid.appendChild(dateCell);
+            }
+        }
+
+        // JavaScript para funcionalidades adicionais
+        document.addEventListener('DOMContentLoaded', function() {
+            // Menu mobile
+            const mobileMenu = document.querySelector('.mobile-menu');
+            const navMenu = document.querySelector('nav ul');
+            
+            mobileMenu.addEventListener('click', function() {
+                navMenu.classList.toggle('hidden');
+                navMenu.classList.toggle('flex');
+                navMenu.classList.toggle('flex-col');
+                navMenu.classList.toggle('absolute');
+                navMenu.classList.toggle('bg-primary-dark');
+                navMenu.classList.toggle('w-full');
+                navMenu.classList.toggle('left-0');
+                navMenu.classList.toggle('top-20');
+                navMenu.classList.toggle('p-4');
+                navMenu.classList.toggle('space-y-4');
+                navMenu.classList.toggle('space-x-0');
+            });
+            
+            // Fechar menu ao clicar em um link
+            document.querySelectorAll('nav ul li a').forEach(link => {
+                link.addEventListener('click', function() {
+                    if (window.innerWidth < 768) {
+                        navMenu.classList.add('hidden');
+                        navMenu.classList.remove('flex', 'flex-col', 'absolute', 'bg-primary-dark', 'w-full', 'left-0', 'top-20', 'p-4', 'space-y-4', 'space-x-0');
+                    }
+                });
+            });
+            
+            // Suavizar rolagem para âncoras
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if(targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if(targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+            
+            // Botão voltar ao topo
+            const backToTopButton = document.querySelector('.back-to-top');
+            
+            window.addEventListener('scroll', function() {
+                if (window.pageYOffset > 300) {
+                    backToTopButton.classList.remove('opacity-0', 'invisible');
+                    backToTopButton.classList.add('opacity-100', 'visible');
+                } else {
+                    backToTopButton.classList.remove('opacity-100', 'visible');
+                    backToTopButton.classList.add('opacity-0', 'invisible');
+                }
+            });
+            
+            backToTopButton.addEventListener('click', function() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+            
+            // Navegação do calendário
+            document.getElementById('prev-month').addEventListener('click', function() {
+                currentMonth--;
+                if (currentMonth < 0) {
+                    currentMonth = 11;
+                    currentYear--;
+                }
+                generateCalendar(currentMonth, currentYear);
+            });
+            
+            document.getElementById('next-month').addEventListener('click', function() {
+                currentMonth++;
+                if (currentMonth > 11) {
+                    currentMonth = 0;
+                    currentYear++;
+                }
+                generateCalendar(currentMonth, currentYear);
+            });
+            
+            // Header transparente no hero
+            const header = document.querySelector('header');
+            const heroSection = document.querySelector('.hero-bg');
+            
+            window.addEventListener('scroll', function() {
+                const heroHeight = heroSection.offsetHeight;
+                
+                if (window.pageYOffset > heroHeight - 100) {
+                    header.classList.remove('bg-primary-dark/90');
+                    header.classList.add('bg-primary-dark');
+                } else {
+                    header.classList.remove('bg-primary-dark');
+                    header.classList.add('bg-primary-dark/90');
+                }
+            });
+            
+            // Inicializar calendário
+            generateCalendar(currentMonth, currentYear);
+        });
+    </script>
+</body>
+</html>
