@@ -178,7 +178,7 @@
                         <img src="assets/logo.png" alt="Templo" class="w-full h-auto transition-all duration-700 rounded-sm">
                     </div>
                     <div class="absolute -bottom-6 -right-6 bg-gold p-6 rounded-sm shadow-xl hidden md:block z-20">
-                        <p class="text-midnight-950 font-serif font-bold text-3xl">100+</p>
+                        <p class="text-midnight-950 font-serif font-bold text-3xl"> <h1 id="mostrador-idade"></h1> </p>
                         <p class="text-midnight-900 text-sm uppercase tracking-wider font-bold">Anos de História</p>
                     </div>
                 </div>
@@ -417,6 +417,23 @@
     </button>
 
     <script>
+
+
+
+
+    // 1. Defina o ano de nascimento
+    const anoNascimento = 2000;
+
+    // 2. Pegue o ano atual automaticamente do sistema
+    const anoAtual = new Date().getFullYear();
+
+    // 3. Calcule
+    const idade = anoAtual - anoNascimento;
+
+    // 4. Insira no HTML
+    document.getElementById("mostrador-idade").innerText = idade;
+
+
         // Inicializar AOS (Animate On Scroll)
         document.addEventListener('DOMContentLoaded', function() {
             AOS.init({
